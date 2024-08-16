@@ -7,7 +7,7 @@ CU Aug 2024
 - A Django project is a Python package containing the database configuration used by various sub-modules (Django calls them apps) and other Django-specific settings.
 - Django project is representation for the entire web app project.
 
-<center> ![image](https://github.com/user-attachments/assets/b1f8fed5-f251-45e5-bcb9-1f9a1fdb665a) </center>
+![image](https://github.com/user-attachments/assets/b1f8fed5-f251-45e5-bcb9-1f9a1fdb665a) 
 
                       Caption: Diagram represent what is the project vs app
 
@@ -132,6 +132,7 @@ Steps to define urls in project and app:
 
 
 2- Implement view function in [views.py] file in the app.
+
 ![image](https://github.com/user-attachments/assets/bcc58b14-23e9-4e84-9194-e583ed8ab8e0)
 
 
