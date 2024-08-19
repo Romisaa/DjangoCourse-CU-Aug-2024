@@ -167,5 +167,118 @@ We should import include from django.urls import include
 - to implement tests that will run with the app.
 
 
+---------------------------------------------------------------------------------------------------------------
+
+# MVT
+
+## **MVC Architecture**
+
+- Most of the web frameworks implement the MVC (Model-View-Controller) architecture.
+- The MVC design pattern separates the entire web application development process into three layers: [Model, View and Controller].
+
+![image](https://github.com/user-attachments/assets/9321421c-37f7-40a9-aa4d-4d10ef62b3c4)
+
+
+**In the MVC approach:**
+
+- The controller intercepts the user requests. It coordinates with the view and model layers to send the appropriate response back to the client.
+- The model is responsible for data definitions, processing logic and interaction with the backend database.
+- The view is the presentation layer of the application. It takes care of the placement and formatting of the result and sends it to the controller, which in turn, redirects it to the client as the application's response.
+
+## **MVT Architecture**
+
+- The Django framework adapts a Model, View and Template (MVT) approach, a slight variation of the MVC approach.
+
+![image](https://github.com/user-attachments/assets/57bb5cb2-5d4d-4f7e-9846-c36d3d56b393)
+
+
+- The model is the data layer of the application.
+- The view is, in fact, the layer that undertakes the processing logic.
+- The template is the presentation layer.
+
+**A Django application consists of the following components:**
+
+- URL dispatcher
+- View
+- Model
+- Template
+
+### URL Dispatcher
+
+- Url Dispatcher act as a controller in MVC approach.
+- The **urls.py** module in the Django project's package folder acts as the dispatcher.
+- When the server receives a request in the client URL, the dispatcher matches its pattern with the patterns available in the **urls.py**.
+- It then routes the flow of the application toward its associated view.
+
+### View
+
+- The view function **reads the path, query, and body parameters included in the client's request** If required, it uses this data to interact with the models to perform CRUD operations.
+- A view can be a user-defined function or a class.
+
+### Model
+
+- Python class.
+- Django migrates the attributes of the model class to construct a database table of a matching structure.
+- Django's Object Relational Mapper (ORM) helps perform CRUD operations in an object-oriented way instead of invoking SQL queries.
+
+### Template
+
+- It is a web page containing a mix of static HTML and Django Template Language code blocks.
+- file.html
+- Django's template processor uses any context data from the view inserted in these blocks to formulate a dynamic response.
+
+<aside>
+💡 **The view uses the client's and the model's data and renders its response using a template.**
+
+</aside>
+
+---
+
+# Views
+
+The primary role of the view function is to fetch the data from the client's request, apply a certain processing logic to it and send an appropriate response back to the client.
+
+It receives the request data in an object of class **HttpRequest**. 
+
+- Used to process HTTP request and HTTP response.
+- In Django, a view is a function designed to handle a web request and return a web response. Each view function takes an HTTP Request object as its first parameter.
+
+`def home(request):`
+
+`content = “<html>hello world</html>”`
+
+`return HTTPRespons(content)`
+
+- Need to map view function to URL to get HTTP response. **THIS IS CALLED ROUTING.**
+- Create [urls.py] file in app structure to route or map view functions with the urls.
+
+![image](https://github.com/user-attachments/assets/028249df-cde0-45be-a163-d462d500f07d)
+
+
+- The URL patterns list can contain multiple paths, and each path is created using the path function.
+    - The function can accept arguments and two are acquired: [The first argument is the route, which is a string that contains a URL pattern - and the second argument is the view, which contains the relative path and the name of the view function].
+
+- Django's URL dispatcher invokes a corresponding view function that matches the URL pattern.
+- The view interacts with both the model and template layers.
+- View interacts with Models (Structure of DB) in two ways:
+    - 1 - Fetch objects from models.
+    - 2 - Insert new instance to the model using the parameter which will create new record in the database.
+
+
+# How to use migrations
+
+- Django’s migration is a version control system. Whenever you add a new model or effect changes in an existing model, you need to run the **makemigrations** command. It creates a script for making changes in the mapped table. Every time you run the **makemigrations** command and Django detects the changes, a script with its name and version number is created. To implement the changes according to the migration script, you need to run the **migrate** command.
+
+![image](https://github.com/user-attachments/assets/17145bd1-c673-4ffd-bccd-95820e5b4880)
+
+![image](https://github.com/user-attachments/assets/cf20e10b-2c5c-49d9-b991-62c1bfe78cdf)
+
+
+# Object Relationship Mapping (ORM)
+
+- The ORM layer maps a class to a table in a relational database, with its attributes matching the table's field structure.
+- The ORM library lets you perform the database operations in an object-oriented way instead of executing raw SQL queries.
+- Object Relational Mapping or ORM is the ability to create a SQL query using object-oriented programming language such as Python. This enables a quick turnaround time in fast production environments that need constant updates.
+- A **QuerySet** represents a collection of objects from your database. It represents a **SELECT** query. To fetch all the objects, use the **all()** method of the Manager.
 
 
