@@ -264,6 +264,112 @@ It receives the request data in an object of class **HttpRequest**.
     - 1 - Fetch objects from models.
     - 2 - Insert new instance to the model using the parameter which will create new record in the database.
 
+# HTTP Request
+
+- HTTP is the communication protocol you use to browse the internet.
+- HTTP —> Hyper Text Transfer Protocol.
+- It is Request-Response based protocol.
+- Send data as plain text/html.
+
+## Components of HTTP Request
+![image](https://github.com/user-attachments/assets/b9e506f5-40d4-496a-b435-916885d6b0f2)
+
+### Method
+- It is the command that the user what to perform.
+- Describes the type of action that the client wants to perform, and it communicates it to the server.
+![image](https://github.com/user-attachments/assets/2dfbd5ba-708f-46b3-a112-eb98da831a93)
+
+### HTTP Response
+
+- Has similar format of http request + Status code which indicate request status.
+
+### HTTPRequest and HTTPResponse in Django
+
+- Django obtains the **HttpRequest** object from the context provided by the server.
+- As a client request is received, Django’s URL dispatcher mechanism invokes a view that matches the URL pattern and passes this **HTTPRequest** object as the first argument so that all the request metadata is available to the view for processing.
+
+> **Side Note to clarify:**
+> 
+
+View function always has its first argument(request).
+
+عشان يقدر الURL DISPATCHER
+
+ يطابق الREQUEST بالthe URL pattern and passes this **HTTPRequest** objectويبعت الداتا بتاعت الVIEW دا تحديدًا
+
+```python
+def home(request):
+	body of the function
+```
+
+# HTTPS
+
+- Secure version of HTTP.
+- It is using encryption so that no one can access the request.
+- Encrypted all data.
+
+# URL
+
+- Uniform Resource Locator.
+
+## URL Components
+![image](https://github.com/user-attachments/assets/a842c9ee-9fea-494c-9720-ef4c99ee8f3b)
+
+- Scheme: Referred to HTTP or HTTPS.
+- Domain consists of:
+    - Second Level Domain (SLD): represent organization name like (little lemon in the example).
+    - Top Domain: represent country or category (com - org - ie …etc).
+- Parameter: Query string.
+
+# Parameters
+
+- The view function in Django is like any other Python function in that it receives its mandatory argument as the request object from the server context. The client may pass additional arguments via different methods.
+- The parameter linked to the URL’s endpoint is called a **path** parameter.
+
+  ![image](https://github.com/user-attachments/assets/265dcae0-5c55-4c04-869f-f2815b4bbc35)
+
+  ![image](https://github.com/user-attachments/assets/3e72b672-07d8-40b6-adee-5ed1135d0cd6)
+
+  ### Query Parameter
+
+- A query string is a sequence of one or more **key=value** pairs concatenated by the **&** symbol. Each key is the query parameter. The query string ends with the **?** symbol after the URL endpoint.
+
+> **Query strings are an alternative approach to URL parameters for adding URL configurations**
+> 
+
+---
+
+> If you will pass parameter in the url, you should identify this para as argument in the view function that mapped with this url.
+> 
+
+```python
+urlpattern=[
+path(dishes/<str:dish>, views.menuitem),
+]
+```
+
+```python
+def menuitem(request, dish):
+	items={'pasta':'pasta italian'}
+	
+	description = items[dish]
+	return HTTPResponse (f"{dish}" + description) 
+```
+
+Django helps you design your custom url with dynamic parameters.
+
+You can use regular expression in url.
+
+### **URL Namespacing**
+
+- The use of a namespace helps in resolving the same URL name in more than one app.
+- this is a screenshot from [url.py]in app folder.
+
+![Uploading image.png…]()
+
+
+
+
 
 # How to use migrations
 
