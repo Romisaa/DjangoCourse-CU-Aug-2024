@@ -365,10 +365,103 @@ You can use regular expression in url.
 - The use of a namespace helps in resolving the same URL name in more than one app.
 - this is a screenshot from [url.py]in app folder.
 
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/fedf216a-1543-4ee6-9078-71a79949402e)
+
+![image](https://github.com/user-attachments/assets/31fa3a22-8979-49d0-8192-d7d0c90b16e0)
+
+- **Application name** is a variable defined in the app’s [urls.py]file.
+    - The **app_name** defines the application namespace so that the views in this app are identified by it.
+
+#demoapp/urls.py
+from django.urls import path  
+from . import views    
+app_name='demoapp' 
+urlpatterns = [
+	path('', views.index, name='index'),
+] 
+
+- You can see that Django differentiates between same-named URLs in multiple apps with application namespace.
+- If you will use name argument in project’s url file in include function, it will be **instance name.**
+
+![image](https://github.com/user-attachments/assets/defc3a25-38df-4909-a182-789dc1d8617f)
+
+VERY IMPORTANT NOTE
+
+لو محتاج إنك تودي اليوزر من فيو لفيو تاني من جوا فيو فانكشن
+
+—> اليوزر هيروح على login view على طول من الفيو دا
+![image](https://github.com/user-attachments/assets/0773a125-1189-41a9-9f6b-f83d78076b88)
+
+namespace in the url tag —> use the url tag of the Django Template Language. It returns the absolute path from the named URL. 
+
+<form action="{% url 'login' %}" method="post"> 
+#form attributes 
+<input type='submit'> 
+</form> 
+
+# Error Handling
+
+- Status codes meaning.
+![image](https://github.com/user-attachments/assets/ff8f13fd-ba2a-4138-84ef-81cb8f6aa830)
+
+- In django HTTPResponse class handled or errors views.
+- To render the custom exception message, the DEBUG variable in the project’s settings should be set to False.
+- دجانجو عنده الviews بتاعت الايرور اللي من خلالها بيظهر المشكلة لليوزر ولكن لو عايز كاستم فيو محتاج تقفل مود الdebug.
+- create errorhandler.html in your templates so you can use it to customize the error view.
+- Create [view.py] in project directory with functions to handle the error and it will be available across all the project’s apps.
+
+# Models
+
+- Represent database in django.
+- Single source of information.
+- Model is Python class that concern as subclass of django.db.models.
+
+![image](https://github.com/user-attachments/assets/8d2c6355-45e4-4fb1-be9e-5466e9393d9b)
+
+## **Model relationships**
+
+## Types Of Relations:
+
+- One-to-one.
+- One-to-many.
+- Many-to-many.
+
+### One-to-one
+
+- If a primary key is in one model, and only one record exists in the other related model, the two models are said to have a one-to-one relationship.
+
+مثال: الكلية لازم يكون لها مدير واحد بس.
+
+![image](https://github.com/user-attachments/assets/10fa3f00-a5a0-43ad-a196-8ab0b99e2686)
 
 
+![image](https://github.com/user-attachments/assets/39b5d481-6bd8-4ff1-b0bc-43bf0ff6c8a0)
 
+
+- On_delete option has some attributes.
+
+![image](https://github.com/user-attachments/assets/f22feee5-5bde-4d75-a7ac-ec145e0927b8)
+
+
+### One-to-many
+
+- One object of a model can be associated with one or more objects of another model.
+
+مثال: المادة بيكون لما مدرس واحد بس عادي يكون في نفس المدرسة أكتر من مدرس لنفس المادة.
+
+![image](https://github.com/user-attachments/assets/fe8ed79c-930e-4918-b64f-ff046784d415)
+
+![image](https://github.com/user-attachments/assets/2e63c291-d23f-441e-9da6-43ea3ebaee87)
+
+
+### Many-to-many
+
+- Multiple objects of one model can be associated with multiple objects of another model.
+
+مثال: أكتر من مدرس ممكن يدرسوا نفس المادة فدا معناه ان ممكن مدرس يدرس أكتر من مادة. (أستاذ زكريا الدرديري).
+
+
+![image](https://github.com/user-attachments/assets/7be7e803-560e-4c19-a6cc-f1c59fc967ec)
 
 
 # How to use migrations
@@ -387,4 +480,49 @@ You can use regular expression in url.
 - Object Relational Mapping or ORM is the ability to create a SQL query using object-oriented programming language such as Python. This enables a quick turnaround time in fast production environments that need constant updates.
 - A **QuerySet** represents a collection of objects from your database. It represents a **SELECT** query. To fetch all the objects, use the **all()** method of the Manager.
 
+# Forms
+- To collection information from the users.
+- You can create form by:
+    - HTML Form <form></form>.
+    - Form class. class Form(forms.Form).
+    - Form Model.
+- Create [forms.py] in app file.
 
+## How to use forms to collect the right data type?
+
+- Main point is to define the form fields in the form class in django.
+- CharField - IntegerField - EmailField - DateField - FileField ..etc.
+- Arguments for these fields:
+    - Required: Each field is required by default; you can change this by (required=false).
+    - Label: To express what this field for.
+    - Initial: As you can pass an initial value for the field.
+    - Help_text: to provide help text for the field.
+    - widget: to pass HTML render templates.
+    - attrs: that you can pass number of rows of the field which will affect the size of the field.
+![image](https://github.com/user-attachments/assets/2d0cb1da-078d-43ff-9891-e5341a1c66e5)
+
+
+## Form API
+
+- Can render different views of the form in html template by using {{forms.as_ul}} / {{forms.as_table}} ..etc.
+
+## ModelForm
+
+- How to save and retrieve data from a form to a database.
+
+# Django Admin
+
+- Created to be managed by Site Managers.
+- Django’s authorization and authentication system are provided by **django.contrib.admin** app, which is installed by default. It can be seen in the **INSTALLED_APPS** in the project’s **settings.py** file.
+- To login to Django Admin, you need to create superuser.
+
+```python
+python manage.py createsuperuser
+```
+
+- Different permissions can be granted to the user individually or by creating a group with a set of permissions. Users can be added to the group so that a set of users with common permissions is created.
+- You can determine fields to read_only to that the admins can’t edit these fields.
+
+# Templates
+
+- A template is an HTML file with placeholders for variable data marked by a special syntax. Django uses its own template language called Django Template Language (DTL). Just the HTML, the DTL has its own tags that control how the variable part is filled.
