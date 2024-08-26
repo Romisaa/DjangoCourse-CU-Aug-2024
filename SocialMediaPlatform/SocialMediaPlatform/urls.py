@@ -1,5 +1,5 @@
 """
-URL configuration for SocialMediaPlatform project.
+URL configuration for socual_media_home project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -16,8 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('socual_media_home.urls'))
-]
+    path('', include('socual_media_home.urls')),
+    path('register/', include('users.urls')),
+    path('login/', views.LoginView.as_view(template_name='users/user_login.html'), name="UserLogin"),
+    # path('logout/', views.LogoutView.as_view(template_name='users/user_logout.html', next_page=None), name="UserLogout")
+
+
+] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

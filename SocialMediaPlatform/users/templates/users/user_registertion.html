@@ -1,0 +1,27 @@
+{% extends 'socual_media_home/base.html' %}
+{% load crispy_forms_tags%}
+
+{% if message%}
+{%for message in messages%}
+{{message}}
+{% endfor %}
+{%endif%}
+{% block content %}
+
+<div class="container">
+
+    <form method="POST">
+        {% csrf_token %}
+        <h3> Registration Form </h3>
+        <fieldset>
+            {{form | crispy }}
+        </fieldset>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+
+</div>
+
+
+{% endblock content%}
+
+
