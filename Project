@@ -1,0 +1,21 @@
+<h1>Final Project Requirements</h1>
+<h3>Doctors Hub Application</h3>
+1- The System must have Login/Registration system for the users.
+2- When User Logged in home page will contain:
+  - Welcome messgae with user name (EX: Hello Ahmed to Doctors Hub).
+3- Home page will contains two dropdowns ( Dropdowns with Specialization) (Another Dropdown with Areas)
+  and a Search button.
+  (EX: User search about أسنان - مدينة نصر).
+4- When user click on search button a list will appear with the search results.
+5- When User clicks on Doctors name, the user will be navigated to another screen with doctors details ( Name - Phone - Address).
+6- The system must have Navbar to help user navigate easily in the app.
+
+Note: Styling upon your preferences. 
+
+<h2>How to deliver the Project</h2>
+- You Must update the code on github and send me the link repo.
+- The Repo will contain (Code files - README file with screenshoots from the system).
+
+<h1>Deadline will be 10/9/2024 12:00am</h1>
+
+<p>Any code duplicates will result in project cancellation</p>
